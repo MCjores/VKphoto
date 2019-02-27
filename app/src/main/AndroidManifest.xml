@@ -19,7 +19,15 @@
             android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
-        <activity android:name=".FullImageActivity" />
+        <!--автоматически масштабировалась по одной из сторон, при этом прокрутка остается только в одном направлении.
+        Например, для просмотра фотографий более удобна ландшафтная ориентация устройства.
+        Также при смене ориентации телефона масштаб изображения должен автоматически меняться.
+        Дополнительно расширим место для просмотра изображения на полный экран.-->
+
+        <activity android:name=".FullImageActivity"
+            android:configChanges="orientation"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            />
         <activity android:name=".PhotosInAlmums"/>
         <activity android:name=".MainActivity">
             <intent-filter>
