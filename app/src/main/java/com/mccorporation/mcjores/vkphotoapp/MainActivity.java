@@ -1,6 +1,8 @@
 package com.mccorporation.mcjores.vkphotoapp;
 
 import android.content.Intent;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +19,6 @@ import com.vk.sdk.api.VKError;
 import com.vk.sdk.api.VKParameters;
 import com.vk.sdk.api.VKRequest;
 import com.vk.sdk.api.VKResponse;
-import com.vk.sdk.api.model.VKApiPhoto;
 import com.vk.sdk.api.model.VKApiPhotoAlbum;
 
 import org.json.JSONArray;
@@ -79,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
                 gridViewForAlbums.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        //______________НЕ РАБОТАЕТ null_________________
+                        ViewPager page = (ViewPager) findViewById(R.id.pager);
+                        PageAdapter adapter = new PageAdapter(getApplicationContext(),text1);
+                        if(page!=null)
+                            page.setAdapter(adapter);
+                        //___________________________________________
+
 
                         Intent intent = new Intent(getApplicationContext(),PhotosInAlmums.class);
                         int album_pos = gridAdapter.getAlbumId(position);
@@ -163,7 +172,20 @@ public class MainActivity extends AppCompatActivity {
         gridAdapter = new GridAdapter(MainActivity.this,text,text1, imageIdsAlbum, textPhotoVKcount);
     }
 
-    public static ArrayList<String> getText1() {
-        return text1;
-    }
+//    public class PageAdapter extends FragmentPagerAdapter {
+//        public PageAdapter(FragmentManager fm) {
+//            super(fm);
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            return PageFragmet.newInstance(position);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return 0;   //count page
+//        }
+//    }
+
 }
